@@ -29,6 +29,6 @@ function initialize() {
 	});
 }
 
-window.onload = function()
+window.onload = function(){
 	initialize();
 }
