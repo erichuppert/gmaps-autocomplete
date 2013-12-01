@@ -25,10 +25,10 @@ function initialize() {
 		};
 		window.setTimeout(function(){
 			document.getElementById('address_address').value = street_num + " " + street_name;
-		});
+		}, 10);
 	});
 }
 
-window.onload = function(){
+window.onload = function()
 	initialize();
 }
