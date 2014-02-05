@@ -1,6 +1,6 @@
 function initialize() {
-	query = document.getElementById('address_address');
-	options = {componentRestrictions: {country: 'us'}};
+	query = document.getElementById('gmaps_address');
+	options = {componentRestrictions: {country: 'us'}, types: ['geocode']};
 	autocomplete = new google.maps.places.Autocomplete(query, options);
 
 	google.maps.event.addListener(autocomplete, 'place_changed', function(){
@@ -24,17 +24,16 @@ function initialize() {
 				document.getElementById('address_state').value = place.address_components[i]['long_name'];
 			};
 		};
-		// Autocomplete will set the field value itself
-		// need to delay and set field to just street name and number
-		window.setTimeout(function(){
-		if (street_num && street_name){
-				document.getElementById('address_address').value = street_num + " " + street_name;
-			}
-		else {
-			document.getElementById('address_address').value = ""
-		}}, 10);
+		var address_value = "";
+		if (street_num) {
+			address_value += street_num + " ";
+		};
+		if (street_name) {
+			address_value += street_name
+		};
+		document.getElementById('address_address').value = address_value;
 	});
-}
+};
 
 window.onload = function(){
 	initialize();
